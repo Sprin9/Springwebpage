@@ -1,0 +1,18 @@
+web.xml에서 서블릿 param-value 문제?
+servlet-context 또는 spring-security 문제?
+어노테이션 문제?
+스캔 불가?
+
+BeanCreationException
+
+UnsatisfiedDependencyException
+NoSuchBeanDefinitionException
+
+모든 페이지가 404에러가 뜨는 현상 발생
+=> memberController bean 생성중 오류 
+
+1. web.xml에서 서블릿 초기 서블릿 파라미터를 읽어오지 못함
+2. 패키지 스캔을 못함? -> 암호화 의존성 주입 어노테이션 빼면 정상작동
+2 - 1. spring-security엔 패키지 스캔 없음 -> 넣어도 안됌
+3. bcriptpassword를 주입하기 위해선 따로 생성자를 선언해야함? ->해보려다 실패
+4. Controller 어노테이션이 없다 -> 5억만번 확인
