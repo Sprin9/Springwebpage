@@ -2,21 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<!-- Bootstrap theme -->
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"> --%>
+
 <html>
+
 <head>
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<title>게시판</title>
-
+	<title>게시판</title>
+	
+</head>
 
 <!-- jquery를 불러옵니다. jquery.com download 페이지를 참조해주세요 -->
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
 <script>
 	window.onload = function() {
 		//전체주소
@@ -29,19 +29,13 @@
 	}
 </script>
 
-</head>
-<body>
-	<div class="container">
-		<header>
-			<h1>게시판</h1>
-		</header>
-		<hr />
-
+<body class="text-center">
+	 <div class="container">
 		<div>
 			<%@include file="nav.jsp"%>
 		</div>
-
-		<hr />
+		<br/>
+		<div align="right""><a href="/input/writeView"><h6>글쓰기</h6></a></div>
 
 		<section id="container">
 			<form role="form" method="get">
@@ -66,9 +60,10 @@
 							<td><c:out value="${list.hit }"/></td>
 						</tr>
 					</c:forEach>
-
 				</table>
-				<hr />
+				
+			
+				
 
 			<div class="search row">
 				<div class="col-xs-2 col-sm-2">
@@ -98,20 +93,19 @@
 					<script>
 						$(function() {
 							$('#searchBtn')
-									.click(
-											function() {
-												self.location = "/list"
-														+ '${pageMaker.makeQuery(1)}'
-														+ "&searchType="
-														+ $(
-																"select option:selected")
-																.val()
-														+ "&keyword="
-														+ encodeURIComponent($(
-																'#keywordInput')
-																.val());
-											});
-						});
+								.click(
+									function() {
+										self.location = "/list"
+												+ '${pageMaker.makeQuery(1)}'
+												+ "&searchType="
+												+ $(
+														"select option:selected")
+														.val()
+												+ "&keyword="
+												+ encodeURIComponent($(															'#keywordInput')
+															.val());
+												});
+										});
 					</script>
 					
 			</div>
@@ -126,6 +120,7 @@
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
 								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								ㅤ
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
@@ -137,7 +132,7 @@
 			</form>
 		</section>
 
-	</div>
+	 </div> 
 
 </body>
 </html>

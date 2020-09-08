@@ -22,13 +22,8 @@
 		
 	</script>
 	<body>
-	
+	<div class="container">
 		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
@@ -45,12 +40,13 @@
 						
 					<div>
 						<p>삭제 하시겠습니까?</p>
-						<button type="submit" class="delete_btn">예 삭제합니다.</button>
-						<button type="button" class="cancel_btn">아니오. 삭제하지 않습니다.</button>
+						<button type="submit" class="delete_btn btn btn-success">예</button>
+						<button type="button" class="cancel_btn btn btn-danger">아니오</button>
 					</div>
 				</form>
 			</section>
 			<hr />
+		</div>
 		</div>
 	</body>
 </html>

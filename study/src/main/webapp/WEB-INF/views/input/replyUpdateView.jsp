@@ -22,17 +22,13 @@
 		
 	</script>
 	<body>
-	
-		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
+	<div class="container">
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
-			<hr />
+		<div id="root">
+	
+		<br/>
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/replyUpdate">
@@ -52,13 +48,15 @@
 							
 						</tbody>			
 					</table>
+					<br/>
 					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="button" class="cancel_btn">취소</button>
+						<button type="submit" class="update_btn btn btn-success">저장</button>
+						<button type="button" class="cancel_btn btn btn-danger">취소</button>
 					</div>
 				</form>
 			</section>
 			<hr />
+		</div>
 		</div>
 	</body>
 </html>
