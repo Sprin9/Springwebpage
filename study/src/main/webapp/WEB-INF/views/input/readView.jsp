@@ -104,7 +104,7 @@
 				</div>
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">내용</label>
-					<textarea id="content" name="content" class="form-control" readonly="readonly"><c:out value="${read.content}" /></textarea>
+					<textarea id="content" name="content" class="form-control" readonly="readonly" style="height:100px;"><c:out value="${read.content}" /></textarea>
 				</div>
 				<div class="form-group">
 					<label for="writer" class="col-sm-2 control-label">작성자</label>

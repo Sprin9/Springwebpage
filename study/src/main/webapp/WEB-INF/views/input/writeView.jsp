@@ -4,16 +4,24 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <!-- Bootstrap theme -->
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"> --%>
-    
+
+
+
+<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">    
+
 <html>
 	<head>
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
+	 	<script src="/resources/js/summernote/summernote-lite.js"></script>
+		<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+		
 	 	<title>글쓰기</title>
+	 	
 	</head>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var formObj = $("form[name='writeForm']");
+			var formObj = $("form[name='writeForm']");		
 			$(".write_btn").on("click", function(){
 				if(fn_valiChk()){
 					return false;
@@ -23,7 +31,20 @@
 				formObj.submit();
 			});
 			fn_addFile();
+			
+			$('#summernote').summernote({
+				  height: 300,                 // 에디터 높이
+				  minHeight: null,             // 최소 높이
+				  maxHeight: null,             // 최대 높이
+				  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+				  lang: "ko-KR",					// 한글 설정
+				  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+		          
+			});
+			
 		})
+		
+		
 		
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
@@ -47,25 +68,26 @@
 			});
 		}
 	</script>
-	<body class="text-center">
+	<body>
 	
 		<div id="root">
-			 
-			
+
 			<%@include file="nav.jsp" %>
-			
+			<br>
 			
 			<div class="container">
+			<h1>게시판 > 글작성</h1>
+			
 			<hr />
-			<section id="container">
+			
 				<form name="writeForm" method="post" action="/input/write" enctype="multipart/form-data">
-					<table>
+					<table width="100%">
 						<tbody>
 							<c:if test="${member.userId != null}">
 								<tr>
 									<td>
-									<div class="form-group">
-										<input type="text" id="title" name="title" class="chk form-control" value="제목을 입력하세요." style="width:1110px;height:40px;"/>
+									<div class="form-group" style="width:100%; height:40px;">
+										<input type="text" id="title" name="title" class="chk form-control" value="제목을 입력하세요." />
 									</div>
 									</td>
 								</tr>	
@@ -73,7 +95,7 @@
 									<td>
 									<br>
 									<div class="form-group">
-										<textarea id="content" name="content" class="chk form-control" style="width:1110px;height:400px;">내용을 입력하세요.</textarea>
+										<textarea id="summernote" name="content" class="chk form-control">내용을 입력하세요.</textarea>
 									</div>
 									</td>
 								</tr>
@@ -104,7 +126,7 @@
 					</table>
 				</form>
 				
-			</section>
+			
 			<hr />
 			</div>
 			
