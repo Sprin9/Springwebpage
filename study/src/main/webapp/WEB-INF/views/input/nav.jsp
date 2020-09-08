@@ -30,9 +30,13 @@
       
     
       <li class="nav-item active">
-        <c:if test="${member != null}"><a class="nav-link" href="/member/memberUpdateView">${member.userName}님<span class="sr-only">(current)</span></a></c:if>
+        <c:if test="${member != null}"><a class="nav-link" href="/member/memberUpdateView">회원정보수정<span class="sr-only">(current)</span></a></c:if>
       </li>
-     
+      
+      <li class="nav-item active">
+    	<c:if test="${member != null}"><a class="nav-link">이름: ${member.userName}님<span class="sr-only">(current)</span></a></c:if>
+      </li>
+      
     </ul>
     
   </div>

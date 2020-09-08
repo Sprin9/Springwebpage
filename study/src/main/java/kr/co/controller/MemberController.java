@@ -63,7 +63,7 @@ public class MemberController {
 			
 		}
 	
-	// 로그인 post
+	// 로그인 post 로그인 처리하는 부분
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
 		logger.info("post login");
@@ -72,17 +72,17 @@ public class MemberController {
 		MemberVO login = service.login(vo);
 		
 		boolean pwdMatch;
-		if(login != null) {
+		if(login != null) { //로그인 정보를 받아오면
 			pwdMatch = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
 		} else {
 			pwdMatch = false;
 		}
 		
-		if(login != null && pwdMatch == true) {
+		if(login != null && pwdMatch == true) { //로그인 성공
 			session.setAttribute("member", login);
 			return "redirect:/list";
 		} else {
-			session.setAttribute("member", null);
+			session.setAttribute("member", null); // 로그인 실패
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/member/login";
 		}

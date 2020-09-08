@@ -125,9 +125,12 @@
 				<hr>	
 								
 				<div>
-					<button type="button" class="update_btn btn btn-warning">수정</button>
-					<button type="button" class="delete_btn btn btn-danger">삭제</button>
 					<button type="button" class="list_btn btn btn-primary">목록</button>	
+					
+					<c:if test="${member.userId eq read.writer }">
+						<button type="button" class="update_btn btn btn-warning">수정</button>
+						<button type="button" class="delete_btn btn btn-danger">삭제</button>
+					</c:if>
 				</div>
 				
 				<!-- 댓글 -->
@@ -142,8 +145,10 @@
 								  
 								<p>${replyList.content}</p>
 								<div>
-									<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
+									<c:if test="${member.userId eq read.writer }">
+										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
+										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
+									</c:if>
 								</div>
 							</li>
 						</c:forEach>   

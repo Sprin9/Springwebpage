@@ -26,8 +26,26 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>	
-	
 	</context:component-scan>
+	
+	
+	 <!-- 인터셉터 객체 생성 -->
+	<beans:bean id="authenticationInterceptor" class="kr.co.interceptor.AuthenticationInterceptor">
+    </beans:bean>
+    
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/member/register"/>
+            <mapping path="/input/updateView"/>
+            <mapping path="/input/readView"/>
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+
+
+
+	
 </beans:beans>
 
 

@@ -13,23 +13,16 @@
 </head>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#logoutBtn").on("click", function(){
-			location.href="logout";
-		})
+	$(function() {
+	 $('input').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		radioClass: 'iradio_square-blue',
+		increaseArea: '20%' // optional
+	
+		});
+	});
 		
-		$("#registerBtn").on("click", function(){
-			location.href="register";
-		})
-		
-		$("#memberUpdateBtn").on("click", function(){
-			location.href="memberUpdateView";
-		})
-		
-		$("#memberDeleteBtn").on("click", function(){
-			location.href="memberDeleteView";
-		})
-	})
+	
 </script>
 
 <body class="text-center">
@@ -55,14 +48,14 @@
 	</div>
 	</c:if>
 	
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
+	<div class="checkbox icheck">
+	  <label>
+	    <input type="checkbox" value="useCookie"> 로그인유지
+	  </label>
+	</div>
   
   
- 	 <button id="registerBtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+ 	 <button id="LoginBtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	
 	<c:if test="${msg == false}">
 			<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>

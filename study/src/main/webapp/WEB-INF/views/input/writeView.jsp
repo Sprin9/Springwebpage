@@ -39,7 +39,7 @@
 			var fileIndex = 1;
 			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
 			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:left;' id='fileDelBtn'>"+"삭제"+"</button></div><br/><br/>");
 			});
 			$(document).on("click","#fileDelBtn", function(){
 				$(this).parent().remove();
@@ -64,28 +64,34 @@
 							<c:if test="${member.userId != null}">
 								<tr>
 									<td>
-										<label for="title">제목</label><input type="text" id="title" name="title" class="chk" title="제목을 입력하세요."/>
+									<div class="form-group">
+										<input type="text" id="title" name="title" class="chk form-control" value="제목을 입력하세요." style="width:1110px;height:40px;"/>
+									</div>
 									</td>
 								</tr>	
 								<tr>
 									<td>
-										<label for="content">내용</label><textarea id="content" name="content" class="chk" title="내용을 입력하세요."></textarea>
+									<br>
+									<div class="form-group">
+										<textarea id="content" name="content" class="chk form-control" style="width:1110px;height:400px;">내용을 입력하세요.</textarea>
+									</div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<label for="writer">작성자</label><input type="text" id="writer" name="writer" class="chk" title="작성자를 입력하세요." value="${member.userId}" />
+										<input type="hidden" id="writer" name="writer" class="chk" title="작성자를 입력하세요." value="${member.userId}"/>
 									</td>
 								<tr>
 								
 								<tr>
 									<td id="fileIndex">
-									</td>
+									</td>									
 								</tr>
+								
 								<tr>
-									<td>						
-										<button class="write_btn" type="submit">작성</button>	
-										<button class="fileAdd_btn" type="button">파일추가</button>	
+									<td>					
+										<button class="write_btn btn btn-success" type="submit">작성</button>	
+										<button class="fileAdd_btn btn btn-warning" type="button">파일추가</button>	
 									</td>
 								</tr>	
 								

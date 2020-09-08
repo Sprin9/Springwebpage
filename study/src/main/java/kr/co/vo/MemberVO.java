@@ -8,6 +8,14 @@ public class MemberVO {
 	private String userPass;
 	private String userName;
 	private Date regDate;
+	private boolean useCookie;
+	
+	public boolean getUseCookie() {
+		return useCookie;
+	}
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
 	public String getUserId() {
 		return userId;
 	}
