@@ -125,31 +125,31 @@
 				<hr>	
 								
 				<div>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
+					<button type="button" class="list_btn btn btn-primary">글목록</button>	
 					
 					<c:if test="${member.userId eq read.writer }">
-						<button type="button" class="update_btn btn btn-warning">수정</button>
-						<button type="button" class="delete_btn btn btn-danger">삭제</button>
+							<button type="button" class="update_btn btn btn-warning">글수정</button>
+							<button type="button" class="delete_btn btn btn-danger">글삭제</button>
 					</c:if>
 				</div>
-				
+				<hr />
 				<!-- 댓글 -->
 				<div id="reply">
 					<ol class="replyList">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
 								<p>
-								작성자 : ${replyList.writer}<br />
-								작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+								작성자 : ${replyList.writer} (<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />)
 								</p>
 								  
-								<p>${replyList.content}</p>
+								<p>${replyList.content}</p>					
 								<div>
-									<c:if test="${member.userId eq read.writer }">
-										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
-										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
+									<c:if test="${member.userId eq replyList.writer}">
+										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">댓글 수정</button>
+										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">댓글 삭제</button>
 									</c:if>
 								</div>
+								<hr />
 							</li>
 						</c:forEach>   
 					</ol>
@@ -163,14 +163,13 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				
 					<div class="form-group">
-						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
 						<div class="col-sm-10">
-							<input type="text" id="writer" name="writer" class="form-control" />
+							<input type="hidden" id="writer" name="writer" class="form-control" value="${member.userId}"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
+						<label for="content" class="col-sm-2 control-label">댓글 쓰기</label>
 						<div class="col-sm-10">
 							<input type="text" id="content" name="content" class="form-control"/>
 						</div>
@@ -178,7 +177,7 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
+							<button type="button" class="replyWriteBtn btn btn-success">등록</button>
 						</div>
 					</div>
 				</form>
