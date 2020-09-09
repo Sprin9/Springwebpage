@@ -6,11 +6,18 @@ public class MemberVO {
 
 	private String userId;
 	private String userPass;
+	private String ChangeuserPass;
 	private String userName;
 	private Date regDate;
 	private boolean useCookie;
 	
-	public boolean getUseCookie() {
+	public String getChangeuserPass() {
+		return ChangeuserPass;
+	}
+	public void setChangeuserPass(String changeuserPass) {
+		ChangeuserPass = changeuserPass;
+	}
+	public boolean isUseCookie() {
 		return useCookie;
 	}
 	public void setUseCookie(boolean useCookie) {

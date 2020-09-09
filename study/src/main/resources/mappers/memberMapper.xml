@@ -22,12 +22,24 @@
 		 <!--  AND USERPASS = #{userPass} -->
 	</select>
 	
+	<!-- 로그인 유지 -->
+	<update id="keepLogin">
+        UPDATE MP_MEMBER set SESSIONKEY = #{sessionId}, SESSIONLIMIT = #{next} where userId = #{userId}
+    </update>
+
+	 <!--
+        유효기간이 남아 있으면서 해당 sessionId를 가지는 사용자 정보를 꺼내오는 부분
+     -->
+    <select id="checkUserWithSessionKey" resultType="kr.co.vo.MemberVO">
+        select * from MP_MEMBER where SESSIONKEY = #{sessionId} and SESSIONLIMIT > SYSDATE()
+    </select>
 	
 	<!-- 회원정보 수정 -->
 	<update id="memberUpdate">
 		UPDATE MP_MEMBER SET 
 		<!-- USERPASS = #{userPass}, -->
-		USERNAME = #{userName}
+		USERNAME = #{userName},
+		USERPASS = #{userPass}
 		WHERE USERID = #{userId}
 	</update>
 	

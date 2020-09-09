@@ -40,9 +40,7 @@
 			// 목록
 			$(".list_btn").on("click", function(){
 				
-				location.href = "/list?page=${scri.page}"
-						      +"&perPageNum=${scri.perPageNum}"
-						      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+				location.href = "/list";
 			})
 			
 			$(".replyWriteBtn").on("click", function(){
@@ -50,6 +48,12 @@
 				formObj.attr("action", "/replyWrite");
 				formObj.submit();
 			});
+			
+			$(".loginPlease").on("click", function(){
+				alert("로그인후 이용하실 수 있습니다.");
+				location.href = "member/login";
+			});
+			
 			
 			//댓글 수정 View
 			$(".replyUpdateBtn").on("click", function(){
@@ -71,6 +75,7 @@
 					+ "&rno="+$(this).attr("data-rno");
 			});
 		})
+		
 		
 		function fn_fileDown(fileNo){
 			var formObj = $("form[name='readForm']");
@@ -142,10 +147,11 @@
 								작성자 : ${replyList.writer} (<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />)
 								</p>
 								  
-								<p>${replyList.content}</p>					
+								<input type="text" class="form-control" readonly="readonly" value="${replyList.content}" />
+								<br>
 								<div>
 									<c:if test="${member.userId eq replyList.writer}">
-										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">댓글 수정</button>
+										<button type="button" id="Rp_update" class="replyUpdateBtn btn btn-warning" value="Y" data-rno="${replyList.rno}">댓글 수정</button>
 										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">댓글 삭제</button>
 									</c:if>
 								</div>
@@ -168,6 +174,7 @@
 						</div>
 					</div>
 					
+					<c:if test="${member != null}">
 					<div class="form-group">
 						<label for="content" class="col-sm-2 control-label">댓글 쓰기</label>
 						<div class="col-sm-10">
@@ -180,6 +187,25 @@
 							<button type="button" class="replyWriteBtn btn btn-success">등록</button>
 						</div>
 					</div>
+					</c:if>
+					
+					<c:if test="${member == null}">
+					
+					<div class="form-group">
+						<label for="content" class="col-sm-2 control-label">댓글 쓰기</label>
+						<div class="col-sm-10">
+							<input type="text" id="content" name="content" class="form-control" value="로그인을 해주세요." disabled/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="loginPlease btn btn-success">등록</button>
+						</div>
+					</div>
+					
+					</c:if>
+					
 				</form>
 			</section>
 			<hr />

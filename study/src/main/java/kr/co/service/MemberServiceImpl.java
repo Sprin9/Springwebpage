@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.sql.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -23,6 +25,17 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO login(MemberVO vo) throws Exception {
 		return dao.login(vo);
 	}
+	
+	@Override
+    public void keepLogin(String uid, String sessionId, Date next) {
+ 
+        dao.keepLogin(uid, sessionId, next);
+    }
+ 
+    @Override
+    public MemberVO checkUserWithSessionKey(String sessionId) {
+        return dao.checkUserWithSessionKey(sessionId);
+    }
 
 	//Controller에서 보내는 파라미터들을 memberUpdate(MemberVO vo)로 받고
 	@Override

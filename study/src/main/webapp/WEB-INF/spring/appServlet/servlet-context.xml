@@ -7,11 +7,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 		<resources mapping="/resources/**" location="/resources/" />
 		<resources mapping="/resources/img/**" location="resources/img/**" />
@@ -24,6 +25,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+
 	<context:component-scan base-package="kr.co">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
@@ -35,18 +37,17 @@
 	<beans:bean id="authenticationInterceptor" class="kr.co.interceptor.AuthenticationInterceptor">
     </beans:bean>
     
+    
+    
     <!-- Interceptor 설정 -->
     <interceptors>
-        <interceptor>
-            <mapping path="/member/register"/>
-            <mapping path="/input/updateView"/>
-            <mapping path="/input/readView"/>
+        <interceptor> 
+            <mapping path="/input/writeView"/>
             <beans:ref bean="authenticationInterceptor"/>
         </interceptor>
     </interceptors>
-
-
-
+    
+    
 	
 </beans:beans>
 

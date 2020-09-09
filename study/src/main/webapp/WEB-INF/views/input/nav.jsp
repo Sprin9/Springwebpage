@@ -19,16 +19,16 @@
         <a class="nav-link" href="/list">게시판 <span class="sr-only">(current)</span></a>
       </li>
       
+       <li class="nav-item active">
+        <c:if test="${member == null}"><a class="nav-link" href="/member/register">회원가입<span class="sr-only">(current)</span></a></c:if>
+      </li>
+      
       <li class="nav-item active">
         <c:if test="${member != null}"><a class="nav-link" href="/member/logout">로그아웃<span class="sr-only">(current)</span></a></c:if>
         <c:if test="${member == null}"><a class="nav-link" href="/member/login">로그인<span class="sr-only">(current)</span></a></c:if>
       </li>
       
-      <li class="nav-item active">
-        <c:if test="${member == null}"><a class="nav-link" href="/member/register">회원가입<span class="sr-only">(current)</span></a></c:if>
-      </li>
-      
-    
+
       <li class="nav-item active">
         <c:if test="${member != null}"><a class="nav-link" href="/member/memberUpdateView">회원정보수정<span class="sr-only">(current)</span></a></c:if>
       </li>
