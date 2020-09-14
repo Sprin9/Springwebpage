@@ -10,10 +10,13 @@
 <!-- Bootstrap theme -->
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"> --%>
 
+<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">    
+
 <html>
 <head>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/resources/js/summernote/summernote-lite.js"></script>
+<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <title>게시판</title>
 </head>
 <script type="text/javascript">
@@ -46,6 +49,16 @@
 					formObj.attr("method", "post");
 					formObj.submit();
 				})
+
+				$('#summernote').summernote({
+					height : 300, // 에디터 높이
+					minHeight : null, // 최소 높이
+					maxHeight : null, // 최대 높이
+					focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+					lang : "ko-KR", // 한글 설정
+					placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+
+				});
 			})
 
 	function fn_valiChk() {
@@ -110,24 +123,30 @@
 						type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
 					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
 
-					<table>
+					<table style="width: 100%;">
 						<tbody>
 							<tr>
-								<td><label for="title">제목</label><input type="text"
-									id="title" name="title" value="${update.title}" class="chk"
-									title="제목을 입력하세요." /></td>
+								<td>
+									<div class="form-group" style="width: 100%; height: 40px;">
+										<input type="text" id="title" name="title"
+											class="chk form-control" value="${update.title}" />
+									</div>
+								</td>
 							</tr>
 							<tr>
-								<td><label for="content">내용</label> <textarea id="content"
-										name="content"><c:out value="${update.content}" /></textarea></td>
+								<td>
+									<div class="form-group">
+										<textarea id="summernote" name="content"
+											class="chk form-control"><c:out
+												value="${update.content}" /></textarea>
+									</div>
+								</td>
 							</tr>
 							<tr>
-								<td><label for="writer">작성자</label><input type="text"
-									id="writer" name="writer" value="${update.writer}"
-									readonly="readonly" /></td>
+								<td><label for="writer">작성자: <c:out value="${update.writer}" /></label></td>
 							</tr>
 							<tr>
-								<td><label for="regdate">작성날짜</label> <fmt:formatDate
+								<td><label for="regdate">작성날짜: </label> <fmt:formatDate
 										value="${update.regdate}" pattern="yyyy-MM-dd" /></td>
 							</tr>
 

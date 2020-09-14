@@ -31,43 +31,50 @@
 	<div>
 		<%@include file="../input/nav.jsp"%>
 	</div>
-	
+
 	<div class="container">
-		<br /> <br /> <br />
+		<br /> <br /> <br /> <br />
 
 		<form class="form-signin" name='homeForm' method="post"
 			action="/member/login">
+			<table border="0" width="400px" align="center">
+			<tr><td align="center">
+				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+				<br>
+			</td></tr>
+			
+			<tr><td align="center">
+				<c:if test="${member == null}">
+					<div id="center">
+						<label for="userId" class="sr-only">ID</label> <input type="text"
+							id="userId" name="userId" class="form-control" placeholder="ID"
+							required="" autofocus="">
+					</div>
+					<br>
+					<div id="center">
+						<label for="userPass" class="sr-only">Password</label> <input
+							type="password" id="userPass" name="userPass"
+							class="form-control" placeholder="Password" required="">
+					</div>
+					<br />
+				</c:if>
 
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-			<c:if test="${member == null}">
-				<div id="center">
-					<label for="userId" class="sr-only">ID</label> <input type="text"
-						id="userId" name="userId" class="form-control" placeholder="ID"
-						required="" autofocus="">
+				<div class="checkbox icheck">
+					<label> <input type="checkbox" id="useCookie"
+						name="useCookie" value="true"> 로그인유지
+					</label>
 				</div>
+
 				<div id="center">
-					<label for="userPass" class="sr-only">Password</label> <input
-						type="password" id="userPass" name="userPass" class="form-control"
-						placeholder="Password" required="">
+					<button id="LoginBtn" class="btn btn-lg btn-primary btn-block"
+						type="submit">Sign in</button>
 				</div>
-			</c:if>
 
-			<div class="checkbox icheck">
-				<label> <input type="checkbox" id="useCookie"
-					name="useCookie" value="true"> 로그인유지
-				</label>
-			</div>
-
-			<div id="center">
-				<button id="LoginBtn" class="btn btn-lg btn-primary btn-block"
-					type="submit">Sign in</button>
-			</div>
-
-			<c:if test="${msg == false}">
-				<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
-			</c:if>
-
+				<c:if test="${msg == false}">
+					<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
+				</c:if>
+				</td></tr>
+			</table>
 		</form>
 	</div>
 </body>
